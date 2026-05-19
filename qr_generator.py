@@ -1,4 +1,4 @@
-import qr_generator
+import qrcode
 import os
 
 print("QR Generator Loaded")
@@ -18,7 +18,7 @@ def generate_qr(book_id):
     data = f"Book ID: {book_id}"
 
     # Generate QR
-    img = qr_generator.make(data)
+    img = qrcode.make(data)
 
     # File path
     file_path = f"{folder}/{book_id}.png"
