@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <!-- Sidebar -->
+
+<div class="sidebar">
+
+    <h2>Library</h2>
+
+    <ul>
+
+        <li>
+            <a href="/dashboard">
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/books">
+                Books
+            </a>
+        </li>
+
+        <li>
+            <a href="/students">
+                Students
+            </a>
+        </li>
+
+        <li>
+            <a href="/issue">
+                Issue Book
+            </a>
+        </li>
+
+        <li>
+            <a href="/return">
+                Return Book
+            </a>
+        </li>
+
+        <li>
+            <a href="/smart_scanner">
+                QR Issue
+            </a>
+        </li>
+
+        <li>
+            <a href="/smart_return">
+                QR Return
+            </a>
+        </li>
+
+        <li>
+            <a href="/history">
+                History
+            </a>
+        </li>
+
+        <li>
+            <a href="/search">
+                Search
+            </a>
+        </li>
+
+        <li>
+            <a href="/">
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <h1>Library Dashboard</h1>
+
+
+        <!-- Dashboard Cards -->
+
+        <div class="card-container">
+
+            <div class="card">
+
+                <h2>Total Books</h2>
+
+                <p>{{ total_books }}</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Total Students</h2>
+
+                <p>{{ total_students }}</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Issued Books</h2>
+
+                <p>{{ issued_books }}</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Returned Books</h2>
+
+                <p>{{ returned_books }}</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Total Transactions</h2>
+
+                <p>{{ total_transactions }}</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Recent Books -->
+
+        <div class="recent-books">
+
+            <h2>Recent Books</h2>
+
+            <table>
+
+                <tr>
+
+                    <th>Book ID</th>
+
+                    <th>Title</th>
+
+                    <th>Author</th>
+
+                    <th>Quantity</th>
+
+                </tr>
+
+
+                {% for book in books %}
+
+                <tr>
+
+                    <td>{{ book.book_id }}</td>
+
+                    <td>{{ book.title }}</td>
+
+                    <td>{{ book.author }}</td>
+
+                    <td>{{ book.quantity }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

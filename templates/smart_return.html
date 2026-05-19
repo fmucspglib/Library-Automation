@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Return Scanner</title>
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <!-- Sidebar -->
+
+<div class="sidebar">
+
+    <h2>Library</h2>
+
+    <ul>
+
+        <li>
+            <a href="/dashboard">
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/books">
+                Books
+            </a>
+        </li>
+
+        <li>
+            <a href="/students">
+                Students
+            </a>
+        </li>
+
+        <li>
+            <a href="/issue">
+                Issue Book
+            </a>
+        </li>
+
+        <li>
+            <a href="/return">
+                Return Book
+            </a>
+        </li>
+
+        <li>
+            <a href="/smart_scanner">
+                QR Issue
+            </a>
+        </li>
+
+        <li>
+            <a href="/smart_return">
+                QR Return
+            </a>
+        </li>
+
+        <li>
+            <a href="/history">
+                History
+            </a>
+        </li>
+
+        <li>
+            <a href="/search">
+                Search
+            </a>
+        </li>
+
+        <li>
+            <a href="/">
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <h1>Smart Return Scanner</h1>
+
+        <!-- Scanner -->
+
+        <div id="reader"></div>
+
+
+        <!-- Scan Result -->
+
+        <div class="result-card">
+
+            <h2>Scanned Data</h2>
+
+            <p>
+
+                <strong>Student ID:</strong>
+
+                <span id="student_id">
+                    -
+                </span>
+
+            </p>
+
+            <p>
+
+                <strong>Book ID:</strong>
+
+                <span id="book_id">
+                    -
+                </span>
+
+            </p>
+
+
+            <!-- Return Button -->
+
+            <button onclick="returnBook()">
+
+                Return Book
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let studentId = "";
+
+let bookId = "";
+
+
+// QR Scan Success
+
+function onScanSuccess(decodedText){
+
+    console.log(decodedText);
+
+
+    // Student QR
+
+    if(decodedText.includes("Student ID")){
+
+        studentId =
+            decodedText.replace("Student ID: ", "");
+
+        document.getElementById("student_id")
+        .innerHTML = studentId;
+    }
+
+
+    // Book QR
+
+    if(decodedText.includes("Book ID")){
+
+        bookId =
+            decodedText.replace("Book ID: ", "");
+
+        document.getElementById("book_id")
+        .innerHTML = bookId;
+    }
+}
+
+
+// Start Scanner
+
+let html5QrcodeScanner =
+    new Html5QrcodeScanner(
+
+        "reader",
+
+        {
+            fps:10,
+            qrbox:250
+        }
+
+);
+
+html5QrcodeScanner.render(onScanSuccess);
+
+
+// Return Book
+
+function returnBook(){
+
+    if(studentId == "" || bookId == ""){
+
+        alert("Scan Student and Book QR");
+
+        return;
+    }
+
+
+    fetch('/return_qr_book', {
+
+        method:'POST',
+
+        headers:{
+            'Content-Type':'application/json'
+        },
+
+        body:JSON.stringify({
+
+            student_id:studentId,
+
+            book_id:bookId
+        })
+
+    })
+
+    .then(response => response.text())
+
+    .then(data => {
+
+        alert(data);
+    });
+}
+
+</script>
+
+</body>
+</html>

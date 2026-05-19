@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Transaction History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+<div class="sidebar">
+
+    <h2>Library</h2>
+
+    <ul>
+
+        <li>
+            <a href="/dashboard">
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/books">
+                Books
+            </a>
+        </li>
+
+        <li>
+            <a href="/students">
+                Students
+            </a>
+        </li>
+
+        <li>
+            <a href="/issue">
+                Issue Book
+            </a>
+        </li>
+
+        <li>
+            <a href="/return">
+                Return Book
+            </a>
+        </li>
+
+        <li>
+            <a href="/smart_scanner">
+                QR Issue
+            </a>
+        </li>
+
+        <li>
+            <a href="/smart_return">
+                QR Return
+            </a>
+        </li>
+
+        <li>
+            <a href="/history">
+                History
+            </a>
+        </li>
+
+        <li>
+            <a href="/search">
+                Search
+            </a>
+        </li>
+
+        <li>
+            <a href="/">
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <h1>Transaction History</h1>
+
+
+        <table>
+
+            <tr>
+
+                <th>Student ID</th>
+
+                <th>Student Name</th>
+
+                <th>Book ID</th>
+
+                <th>Book Title</th>
+
+                <th>Status</th>
+
+            </tr>
+
+
+            {% for transaction in transactions %}
+
+            <tr>
+
+                <td>
+
+                    {{ transaction.student_id }}
+
+                </td>
+
+                <td>
+
+                    {{ transaction.student_name }}
+
+                </td>
+
+                <td>
+
+                    {{ transaction.book_id }}
+
+                </td>
+
+                <td>
+
+                    {{ transaction.book_title }}
+
+                </td>
+
+                <td>
+
+                    {{ transaction.status }}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
