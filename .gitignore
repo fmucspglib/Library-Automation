@@ -10,3 +10,7 @@ env/
 .venv/
 static/qr/
 *.xlsx
+dist/
+build/
+*.exe
+*.pkg
