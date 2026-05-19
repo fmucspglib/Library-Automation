@@ -1,12 +1,14 @@
+import os
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-# Path to JSON key file
-cred = credentials.Certificate("C:\library-automation\Firebase_key.json")
+if not firebase_admin._apps:
+    if os.getenv("RENDER"):
+        cred = credentials.Certificate("/etc/secrets/firebase_key.json")
+    else:
+        cred = credentials.Certificate("firebase_key.json")
 
-# Initialize Firebase
-firebase_admin.initialize_app(cred)
+    firebase_admin.initialize_app(cred)
 
 db = firestore.client()
-
 print("Firebase Connected Successfully!")
