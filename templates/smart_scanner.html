@@ -123,7 +123,7 @@
 
             <p>
 
-                <strong>Book ID:</strong>
+                <strong>book_id>
 
                 <span id="book_id">
                     -
@@ -175,10 +175,10 @@ function onScanSuccess(decodedText){
 
     // Book QR
 
-    if(decodedText.includes("Book ID")){
+    if(decodedText.includes("book_id")){
 
         bookId =
-            decodedText.replace("Book ID: ", "");
+            decodedText.replace("book_id: ", "");
 
         document.getElementById("book_id")
         .innerHTML = bookId;

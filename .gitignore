@@ -10,6 +10,3 @@ build/
 *.exe
 *.pkg
 firebase_key.json
-
-firebase_key.json
-firebase_key.json.json

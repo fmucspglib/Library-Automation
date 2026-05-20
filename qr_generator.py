@@ -15,7 +15,7 @@ def generate_qr(book_id):
         os.makedirs(folder)
 
     # QR Data
-    data = f"Book ID: {book_id}"
+    data = f"book_id: {book_id}"
 
     # Generate QR
     img = qrcode.make(data)

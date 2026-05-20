@@ -490,7 +490,7 @@ def search():
 
             data = book.to_dict()
 
-            book_id = data.get('book_id', '').lower()
+            book_id= data.get('book_id', '').lower()
 
             title = data.get('title', '').lower()
 
@@ -592,7 +592,7 @@ def issue_qr_book():
 
                 "book_id": book_id,
 
-                "book_title": book_data['title'],
+                "book_title": book_data ['title'],
 
                 "status": "Issued"
             }
@@ -840,7 +840,7 @@ def export_books():
 
         books_data.append({
 
-            "Book ID": data.get("book_id"),
+            "book_id": data.get("book_id"),
 
             "Title": data.get("title"),
 
@@ -879,7 +879,7 @@ def export_books():
 
     for book in books_data:
 
-        book_id = book["Book ID"]
+        book_id = book["book_id"]
 
         qr_path = f"static/qr/{book_id}.png"
 

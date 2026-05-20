@@ -1,0 +1,12 @@
+[33m298b7dc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m fix firebase config
+[33m397f3a3[m remove firebase key from tracking
+[33m78b3ee6[m added firebase key
+[33m9af3b43[m added firebase key
+[33m64c80bd[m remove firebase key
+[33mf612601[m removed firebase secret
+[33md84c8c8[m[33m ([m[1;31morigin/main[m[33m)[m fix firebase path for render
+[33md64e112[m fixed firebase deployment
+[33m5e29695[m gunicorn added
+[33m0e85fe5[m added requirements
+[33m14d2fa3[m clean project
+[33m1179a7a[m first commit
