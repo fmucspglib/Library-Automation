@@ -12,3 +12,4 @@ if not firebase_admin._apps:
 db = firestore.client()
 
 print("Firebase connected successfully")
+print("Project ID:", cred.project_id)
