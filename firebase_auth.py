@@ -1,18 +1,17 @@
 import pyrebase
-firebaseConfig = {
-    "apiKey": "AIzaSyBmLhx-B7nsIz4OomTlPSBofHK4G6AdYcc",
-    "authDomain": "lib-automation-29f1a.firebaseapp.com",
-    "databaseURL": "https://lib-automation-29f1a-default-rtdb.firebaseio.com",
-    "projectId": "lib-automation-29f1a",
-    "storageBucket": "lib-automation-29f1a.firebasestorage.app",
-    "messagingSenderId": "372857580976",
-    "appId": "1:372857580976:web:adf0837ca6a46210defa75",
-    "measurementId": "G-Q7WXNQ0XRG"
-  }
 
-firebase = pyrebase.initialize_app(firebaseConfig)
+firebase_Config = {
+    "apiKey": "AIzaSyBjqaFESOTp10fsesq-5kyHf4hI0bCKzEs",
+    "authDomain": "lib-auto-3cf8b.firebaseapp.com",
+    "databaseURL": "https://lib-auto-3cf8b-default-rtdb.firebaseio.com/",
+    "projectId": "lib-auto-3cf8b",
+    "storageBucket": "lib-auto-3cf8b.appspot.com",
+    "messagingSenderId": "160237048109",
+    "appId": "1:160237048109:web:bf70e6a131750cd0d143a4"
+}
 
+firebase = pyrebase.initialize_app(firebase_Config)
 auth = firebase.auth()
-db = firebase.database()
 
 print("Firebase connected successfully")
+print("Project ID:", firebase_Config["projectId"])

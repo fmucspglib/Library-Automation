@@ -1,12 +1,8 @@
+Firebase_key.json
+firebase_key.json
 __pycache__/
 *.pyc
 venv/
-env/
-.venv/
 static/qr/
-*.xlsx
-dist/
-build/
-*.exe
-*.pkg
-firebase_key.json
+static/student_qr/
+test login.py

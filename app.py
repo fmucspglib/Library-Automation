@@ -29,7 +29,7 @@ def dashboard():
 
         books_data.append(data)
 
-        total_books += int(data['quantity'])
+        total_books += int(data.get('quantity', 0))
 
 
     # ---------------- STUDENTS ----------------
@@ -490,7 +490,7 @@ def search():
 
             data = book.to_dict()
 
-            book_id= data.get('book_id', '').lower()
+            book_id = data.get('book_id', '').lower()
 
             title = data.get('title', '').lower()
 
@@ -592,7 +592,7 @@ def issue_qr_book():
 
                 "book_id": book_id,
 
-                "book_title": book_data ['title'],
+                "book_title": book_data['title'],
 
                 "status": "Issued"
             }
@@ -724,33 +724,20 @@ def signup():
 
 
 # ---------------- CREATE ACCOUNT ----------------
-
-@app.route('/create_account', methods=['POST'])
+@app.route("/create_account", methods=["POST"])
 def create_account():
-
-    email = request.form['email']
-
-    password = request.form['password']
+    email = request.form["email"]
+    password = request.form["password"]
 
     try:
+        user = auth.create_user_with_email_and_password(email, password)
+        print("User created:", user["email"])
+        return redirect("/")
 
-        # Maximum 4 users
-        users = auth.get_account_info
+    except Exception as e:
+        print("Signup Error:", e)
+        return "Signup Failed"
 
-        auth.create_user_with_email_and_password(
-            email,
-            password
-        )
-
-        return redirect('/')
-
-    except:
-
-        return """
-        <h2>
-        Account Already Exists
-        </h2>
-        """
 # ---------------- LOGIN PAGE ----------------
 
 @app.route('/')
@@ -840,7 +827,7 @@ def export_books():
 
         books_data.append({
 
-            "book_id": data.get("book_id"),
+            "Book ID": data.get("book_id"),
 
             "Title": data.get("title"),
 
@@ -879,7 +866,7 @@ def export_books():
 
     for book in books_data:
 
-        book_id = book["book_id"]
+        book_id = book["Book ID"]
 
         qr_path = f"static/qr/{book_id}.png"
 
@@ -921,6 +908,3 @@ def export_books():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-    app.run(host="0.0.0.0", port=port)
-
-
